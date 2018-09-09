@@ -4,7 +4,7 @@ terraform {
 
 resource "aws_security_group" "alb_source" {
   name        = "${var.name}_alb_source"
-  description = "Used as ssh source for ${var.name}_alb_destination policy"
+  description = "Used as source for ${var.name}_alb_destination policy"
   vpc_id      = "${var.vpc_id}"
 
   tags = {
@@ -43,7 +43,7 @@ module "alb" {
 resource "aws_security_group" "alb_destination" {
   count = "${length(var.target_groups)}"
 
-  name        = "${var.name}_alb_destination_${lookup(var.target_groups[count.index], "backend_port")}"
+  name        = "${var.name}_alb_destination_${lookup(var.target_groups[count.index], "name")}"
   description = "Allows access from instance ${var.name}"
   vpc_id      = "${var.vpc_id}"
 
