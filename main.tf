@@ -15,7 +15,7 @@ resource "aws_security_group" "alb_source" {
 }
 
 module "alb" {
-  source = "github.com:interrobangc/terraform-aws-alb-upstream.git?ref=bug_multiple_target_groups"
+  source = "github.com/interrobangc/terraform-aws-alb-upstream?ref=bug_multiple_target_groups"
 
   load_balancer_name        = "${var.name}"
   vpc_id                    = "${var.vpc_id}"
