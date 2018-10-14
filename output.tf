@@ -55,5 +55,5 @@ output "target_group_names" {
 
 output "destination_security_group_ids" {
   description = "The ID of the security group that allows access from this lb."
-  value       = "${element(concat(aws_security_group.alb_destination.*.id, list("")), 0)}"
+  value       = "${aws_security_group.alb_destination.*.id}"
 }
